@@ -9,6 +9,8 @@ models support relationships between feature subspaces and their
 complements, and uses rank-based fusion to combine structural
 and density scores.
 
+We gratefully acknowledge [Professor Mingjie Cai](https://github.com/HNU-MingjieCai), our advisor, for his guidance and support throughout this work.
+
 ## Main Features
 
 - Hierarchical granular-ball representation
