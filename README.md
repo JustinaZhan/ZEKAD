@@ -7,6 +7,11 @@ and fixed structural weight of 0.20.
 
 `zekad.py` contains the core algorithm; `run.py` is the MATLAB-data runner.
 
+## Acknowledgment
+
+We gratefully acknowledge [Professor Mingjie Cai](https://github.com/HNU-MingjieCai),
+our advisor, for his guidance and support throughout this work.
+
 ## Install
 
 Use Python 3.10 or 3.11 with the pinned dependencies:
@@ -88,10 +93,6 @@ reproduced exactly; seven retain differences already present in the previous
 code. Floating-point ties in granular-ball split seeds were confirmed as one
 source of these historical differences.
 
-## Acknowledgment
-
-We gratefully acknowledge [Professor Mingjie Cai](https://github.com/HNU-MingjieCai),
-our advisor, for his guidance and support throughout this work.
 
 ## Citation
 
