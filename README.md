@@ -23,8 +23,17 @@ in all but the last column, and binary labels in the last column (`0`: normal,
 also accepted. Inputs must be finite and real-valued. Datasets are not included.
 MATLAB v7.3 files additionally require `h5py`.
 
+To reproduce the paper's ZEKAD evaluation, use the full grid for every dataset:
+
 ```bash
-python run.py /path/to/Abalone.mat --output-dir results
+python run.py /path/to/Abalone.mat --grid --output-dir grid_results
+python run.py /path/to/data --grid --output-dir grid_results
+```
+
+This generates 295 density-fusion candidates (`k = 2,...,60` and
+`beta = 0,0.25,0.5,0.75,1`). For a general fixed-parameter example:
+
+```bash
 python run.py /path/to/data --k 5 --beta 0 --output-dir results
 ```
 
@@ -33,13 +42,6 @@ NPZ containing `scores` (configurations × samples), `config_k`, `config_beta`,
 and labels when present. `metrics.csv` contains one AUC/AP row per configuration;
 metrics are blank for unlabeled data. Higher scores indicate greater abnormality.
 Existing result files with the same names are replaced.
-
-To generate the paper's 295 density-fusion candidates (`k = 2,...,60` and
-`beta = 0,0.25,0.5,0.75,1`):
-
-```bash
-python run.py /path/to/data --grid --output-dir grid_results
-```
 
 Every run computes the same 160 structural configurations. Density neighborhoods
 must satisfy `k < n`; the full grid requires at least 61 samples. Labels are used
@@ -63,11 +65,13 @@ reproducing a run. The CLI uses that stem automatically.
 
 ## Paper evaluation
 
-The main comparison uses separate AUC/AP oracle maxima from `--grid` for the
-19 archived datasets. The five added datasets—Mammography, Pendigits, Satimage2,
-Shuttle10k, and ThyroidDisease—use the fixed setting `(5, 0)` for both metrics.
-The ablation study instead optimizes each variant on all 24 datasets; its full
-model results for the five added datasets therefore use a different protocol.
+ZEKAD's main comparison uses separate AUC/AP oracle maxima from `--grid` on all
+24 datasets, with the same 295 candidates on every dataset. The ablation study
+also optimizes each variant separately on all 24 datasets; its full-model
+results follow the same protocol as the main comparison. These label-selected
+maxima summarize same-dataset oracle performance; score generation is label-free.
+This grid protocol applies to ZEKAD. The paper retains the archived baseline
+results, including their fixed settings on the five added datasets.
 
 The core formulas, preprocessing, seeds, and parameter grids are preserved.
 Exact reproduction also requires the original dataset versions and names. The

@@ -997,7 +997,8 @@ def score_samples(
     """Score the input samples at a fixed (k, beta), without using labels.
 
     This is transductive: each call constructs the hierarchy and fits the
-    density models on the supplied X. (5, 0) is the paper's frozen pilot setting;
-    the other 19 main-table instances use separately evaluated grid maxima.
+    density models on the supplied X. (5, 0) is the default fixed-parameter
+    example. The paper evaluates all 24 datasets with score_grid and selects
+    AUC/AP maxima separately after score generation.
     """
     return score_grid(x, dataset_name, k_grid=(k,), beta_grid=(beta,))["scores"][0]
